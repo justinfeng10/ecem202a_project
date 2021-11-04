@@ -38,13 +38,13 @@ The first step is to successfully process audio data. Processing includes creati
 
 ### 9.a. Papers
 
-1) Monoaural Audio Source Separation Using Deep Convolutional Neural Networks
+**1) Monoaural Audio Source Separation Using Deep Convolutional Neural Networks**\
 This paper details a neural network approach to source separation. The paper discusses audio preprocessing techniques as well as a network structure that leads to successful source separation. The model detailed here can be used as a template model for my source separation implementation.
 
-2) Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device
+**2) Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device**\
 This paper discusses a lightweight network using U-Net, a network typically used in medical image separation. The writers apply this network to source separation, separating speech from noise on an edge computing device. I can leverage this work to enable the separation of two tangible target sounds on Arduino.
 
-3) Sudo Rm-Rf Efficient Networks for Universal Audio Source Separation
+**3) Sudo Rm-Rf Efficient Networks for Universal Audio Source Separation**\
 This paper highlights an approach to reduce the resource usage of a source separation model. The network provided specifically attempts to reduce memory requirements. This paper does not provide a tangible implementation on an edge device, so I can use strategies discussed in this paper to create a model that fits onto the Arduino board.
 
 ### 9.b. Datasets
