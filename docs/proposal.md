@@ -2,50 +2,75 @@
 
 ## 1. Motivation & Objective
 
-What are you trying to do and why? (plain English without jargon)
+In this project, the goal is to separate two target audio signals that may or may not be occurring at the same time. In audio classification, we cannot guarantee that target sounds will be isolated, as other target sounds may be present at the same time. It is also costly to support two concurrent machine learning models at the same time to classify each signal separately. Additionally, existing work on source separation on embedded systems is limited. Thus, the motivation of this project is to separate two concurrent target sounds via one machine learning model, on an Arduino board.
 
 ## 2. State of the Art & Its Limitations
 
-How is it done today, and what are the limits of current practice?
+Audio source separation consists of a few steps: given a mixture, create a spectrogram (via a short-time fourier transform) and pass it through a convolutional neural network (CNN). The CNN's output is then passed through a time frequency masking step and an inverse short-time fourier transform in order to obtain the separated sources [1].
+
+One limitation is the lack of support for edge devices. A large portion of existing work does not consider resource constraints of edge devices such as limited memory and processing power. Many existing models contain a high number of parameters and can handle longer audio inputs in time and higher sampling rates. Existing work that considers resource constraints either does not separate two distinct target signals [2], or lacks real implementation on an edge device [3].
 
 ## 3. Novelty & Rationale
 
-What is new in your approach and why do you think it will be successful?
+The novelty in my approach is to consider the Arduino's constraints from the beginning in the creation of an audio source separation model and to provide tangible deployment and test results. I believe my approach will be successful because previous work can be leveraged in addition to an understanding of the Arduino's capabilities to fine tune a model as well as audio processing steps to fit the needs of the Arduino.
 
 ## 4. Potential Impact
 
-If the project is successful, what difference will it make, both technically and broadly?
+A successful result will enable edge devices to classify audio samples more robustly. A difficulty in audio recognition is the ability to parse multiple target sounds at the same time. Successful work in this project can be expanded to separate more target sounds or even more complicated problems such as speech separation on edge devices.
 
 ## 5. Challenges
 
-What are the challenges and risks?
+A main challenge is handling the resource constrained nature of the Arduino board. The Arduino board has limited memory, constraining both our machine learning model and our input data. The processing rate is limited and issues involving delay will need to be considered. Additionally, the Arduino board's microphone can only sample at 16kHz. Thus, source separation may work in TensorFlow on a laptop, but there may be implementation challenges when deploying onto the Arduino. Finally, source separation itself is a difficult problem, so obtaining results in TensorFlow could be a bottleneck, both in the creation of a dataset and the implementation of a model.
 
 ## 6. Requirements for Success
 
-What skills and resources are necessary to perform the project?
+A thorough understanding of machine learning models and audio data preprocessing is necessary for this project. Audio signals need to be processed in a manner that the machine learning model can understand. The machine learning model then needs to properly separate the signals. Additionally, a thorough understanding of the Arduino board itself (memory requirements, processing ability, microphone, TinyML, etc.) will allow for a successful deployment of the model.
 
 ## 7. Metrics of Success
 
-What are metrics by which you would check for success?
+A metric of success is to compare the accuracy of the model on TensorFlow and the Arduino. We should expect accuracy loss when deploying the model onto the Arduino, but we should be able to obtain results that are comparable. Additionally, we can analyze the spectrograms of the output of both the Arduino and TensorFlow for a given input to see if we get comparable results. Finally, we can use metrics such as the source-to-distortion ratio to analyze the quality of the sources themselves.
 
 ## 8. Execution Plan
 
-Describe the key tasks in executing your project, and in case of team project describe how will you partition the tasks.
+The first step is to successfully process audio data. Processing includes creating uniformity in the number of channels, sampling rate, and time length of various audio files and to create spectrograms for the machine learning model. The next step is to create a machine learning model in TensorFlow that can successfuly separate two signals. Once we have a successful model, the following step is to process audio data on the Arduino via the board's microphone (using similar processing steps as discussed before) and pass it through the TensorFlow model to see if we obtain comparable accuracy. Once we verify that, the TensorFlow model can then be deployed on the Arduino board via TensorFlow Lite in order to run live tests on the Arduino itself.
 
 ## 9. Related Work
 
 ### 9.a. Papers
 
-List the key papers that you have identified relating to your project idea, and describe how they related to your project. Provide references (with full citation in the References section below).
+1) Monoaural Audio Source Separation Using Deep Convolutional Neural Networks
+This paper details a neural network approach to source separation. The paper discusses audio preprocessing techniques as well as a network structure that leads to successful source separation. The model detailed here can be used as a template model for my source separation implementation.
+
+2) Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device
+This paper discusses a lightweight network using U-Net, a network typically used in medical image separation. The writers apply this network to source separation, separating speech from noise on an edge computing device. I can leverage this work to enable the separation of two tangible target sounds on Arduino.
+
+3) Sudo Rm-Rf Efficient Networks for Universal Audio Source Separation
+This paper highlights an approach to reduce the resource usage of a source separation model. The network provided specifically attempts to reduce memory requirements. This paper does not provide a tangible implementation on an edge device, so I can use strategies discussed in this paper to create a model that fits onto the Arduino board.
 
 ### 9.b. Datasets
 
-List datasets that you have identified and plan to use. Provide references (with full citation in the References section below).
+I plan to use Freesound [4] and BBC Sound Effects [5]. Freesound and BBC Sound Effects contain a diverse set of sounds that can be used legally by either citing or attributing to the website and/or uploader. Data augmentation can also be used to expand the dataset if needed.
 
 ### 9.c. Software
 
-List softwate that you have identified and plan to use. Provide references (with full citation in the References section below).
+I will use the Arduino IDE [6] to write code for the Arduino board. I will use Jupyter Notebook [7] to create and debug my TensorFlow model. I also plan to use the TensorFlow Lite converter (Python API) [8] to convert my TensorFlow model into TensorFlow Lite. Lastly, software such as Edge Impulse [9] can be used to assist in any of these steps.
 
 ## 10. References
 
-List references correspondign to citations in your text above. For papers please include full citation and URL. For datasets and software include name and URL.
+[1] P. Chandna, M. Miron, J. Janer, and E. Gomez, "Monoaural Audio Source Separation Using Deep Convolutional Neural Networks," LVA/ICA 2017. Feb. 2017, doi: 10.1007/978-3-319-53547-0_25. Available: https://www.researchgate.net/publication/313732034_Monoaural_Audio_Source_Separation_Using_Deep_Convolutional_Neural_Networks
+
+[2] K. M. Jeon, C. Chun, G. Kim, C. Leem, B. Kim and W. Choi, "Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device," 2020 IEEE ICCE, 2020, pp. 1-4, doi: 10.1109/ICCE46568.2020.9043051. Available: https://ieeexplore.ieee.org/document/9043051
+
+[3] E. Tzinis, Z. Wang, and P. Smaragdis, "Sudo Rm-Rf: Efficient Networks for Universal AUdio Source Separation," 2020 IEEE 30th International Workshop on MLSP, 2020, doi: 10.1109/MLSP49062.2020.9231900. Available: https://arxiv.org/abs/2007.06833
+
+[4] Freesound. Available: https://freesound.org/
+
+[5] BBC Sound Effects. Avaliable: https://sound-effects.bbcrewind.co.uk/
+
+[6] Arduino IDE. Available: https://www.arduino.cc/en/software
+
+[7] Jupyter Notebook. Available: https://jupyter.org/
+
+[8] TensorFlow Lite Converter. Available: https://www.tensorflow.org/lite/convert/
+
+[9] Edge Impulse. Available: https://www.edgeimpulse.com/
