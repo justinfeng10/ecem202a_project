@@ -10,7 +10,7 @@ The approach taken in this project is to first create a successful source separa
 
 # Required Submissions
 
-* [Proposal](proposal)
+* [Proposal](proposal.md)
 * [Midterm Checkpoint Presentation Slides](http://)
 * [Final Presentation Slides](http://)
 * [Final Report](report)
