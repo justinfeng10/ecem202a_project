@@ -1,12 +1,12 @@
 # Abstract
 
-Provide a brief overview of the project objhectives, approach, and results.
+Audio recognition models can classify sounds individually, but can models classify and separate two or more sounds that are occurring at the same time, even on an embedded system? The goal of this project is to analyze audio source separation on the Arduino Nano 33 BLE Sense board. Source separation is the ability to take 2 or more input target signals and to "separate" them into their component parts. In this project, the target signals are audio and the hope is to separate 2 target signals. 
+
+The approach taken in this project is to first create a successful source separation model in TensorFlow. Next, can audio input from the Arduino be successfully passed into the source separation model. Once the model can successfully classify Arduino input, the next step is to deploy the TensorFlow model onto the Arduino via TensorFlow Lite and run live audio source separation on the Arduino.
 
 # Team
 
-* Name of team member \#1 
-* Name of team member \#2 (delete this if necessary)
-* Name of team member \#3 (delete this if necessary)
+* Justin Feng
 
 # Required Submissions
 
