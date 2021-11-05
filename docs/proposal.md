@@ -2,11 +2,11 @@
 
 ## 1. Motivation & Objective
 
-In this project, the goal is to separate two target audio signals (e.g. faucet and microwave) using one machine learning model. In audio classification, detecting the presence of multiple target sounds may be desired. Additionally, each target sound may be present with other target sounds. The aim is to separate this "mixture" of sounds into their component target sounds in one model, recognizing when each are present (or not present). Existing work on source separation on embedded systems is limited, creating motivation to successfully implement source separation on an Arduino.
+In this project, the goal is to separate two target audio signals (e.g. faucet and microwave) using one machine learning model. In audio classification, detecting the presence of multiple target sounds may be desired, with different target sounds being present at the same time. The aim is to separate this "mixture" of sounds into their component target sounds in one model (instead of using multiple models for each sound individually), recognizing when each are present (or not present). Existing work on source separation on embedded systems is limited, creating motivation to successfully implement source separation on an Arduino.
 
 ## 2. State of the Art & Its Limitations
 
-The Audio source separation pipeline consists of a few steps. Given a mixture, create a spectrogram (via a short-time Fourier transform) and pass it through a convolutional neural network (CNN). The CNN's output is then passed through a time frequency masking step and an inverse short-time Fourier transform in order to obtain the separated sources [1].
+The audio source separation pipeline consists of a few steps. Given a mixture, create a spectrogram (via a short-time Fourier transform) and pass it through a convolutional neural network (CNN). The CNN's output is then passed through a time frequency masking step and an inverse short-time Fourier transform in order to obtain the separated sources [1].
 
 One limitation is the lack of support for edge devices. A large portion of existing work does not consider resource constraints of edge devices such as limited memory and processing power. Some existing work that considers resource constraints does not separate two distinct target signals (excluding noise) [2] or lacks real implementation on an edge device [3].
 
