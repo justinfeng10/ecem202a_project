@@ -2,7 +2,7 @@
 
 ## 1. Motivation & Objective
 
-In this project, the goal is to separate two target audio signals (e.g. faucet and microwave) using one machine learning model. In audio classification, detecting the presence of multiple target sounds may be desired, with different target sounds being present at the same time. The aim is to separate this "mixture" of sounds into their component target sounds in one model (instead of using multiple models for each sound individually), recognizing when each are present (or not present). Existing work on source separation on embedded systems is limited, creating motivation to successfully implement source separation on an Arduino.
+In this project, the goal is to separate two target audio signals (e.g. faucet and microwave) using one machine learning model. In audio classification, detecting the presence of multiple target sounds may be desired, with different target sounds being present at the same time. The aim is to separate this "mixture" of sounds into its component target sounds in one model (instead of using multiple models for each sound individually), recognizing when each are present (or not present). Existing work on source separation on embedded systems is limited, creating motivation to successfully implement source separation on an Arduino.
 
 ## 2. State of the Art & Its Limitations
 
@@ -28,7 +28,7 @@ A thorough understanding of machine learning models and audio data preprocessing
 
 ## 7. Metrics of Success
 
-Since accuracy is not a metric of success in source separation, additional metrics will be needed. Objective metrics such as the source-to-distortion ratio can be used to analyze the quality of the sources themselves. On both the Arduino and the TensorFlow model, tests could be run to see if the model can correctly predict the present target sounds under various circumstances (one target present, both targets present, transitions between the two targets, etc.). Subjective metrics such as analyzing the resulting spectrograms or playing back the separate signals could be used as well. 
+Since accuracy is not a metric of success in source separation, additional metrics will be needed. Objective metrics such as the source-to-distortion ratio can be used to analyze the quality of the sources themselves. On both the Arduino and the TensorFlow model, tests could be run to see if the model can correctly predict the present target sounds under various circumstances (one target present, both targets present, transitions between the two targets, etc.). This means a method of providing an output that signifies the presence of a target is necessary as well. Subjective metrics such as analyzing the resulting spectrograms or playing back the separate signals could be used as well. 
 
 ## 8. Execution Plan
 
