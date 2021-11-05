@@ -39,10 +39,10 @@ The first step is to successfully process audio data for the machine learning mo
 ### 9.a. Papers
 
 **1) Monoaural Audio Source Separation Using Deep Convolutional Neural Networks [1]**\
-This paper details a neural network approach to source separation. The paper discusses audio preprocessing techniques as well as a network structure that leads to successful source separation. The model detailed here can be used as a template model for my source separation implementation.
+This paper details a neural network approach to source separation. The paper discusses a pipeline of source separation (discussed above in the "State of the Art & Its Limitations section"). The authors define a structure of the network that consists of an encoding and decoding stage. Topics such as time-frequency masking and loss calculations are also discussed in the context of source separation. The model and approach detailed here can be used as a basis for my source separation implementation.
 
 **2) Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device [2]**\
-This paper discusses a lightweight network using U-Net, a network typically used in medical image separation. The writers apply this network to source separation, separating speech from noise on an edge computing device. I can leverage this work to enable the separation of two tangible target sounds on Arduino.
+This paper discusses a lightweight network using U-Net, a network typically used in medical image separation. The writers apply this network to source separation, separating speech from noise on an edge computing device. They demonstrate via spectrograms the improvement they were able to obtain in their model. I can leverage this work to enable the separation of two tangible target sounds on Arduino.
 
 **3) Sudo Rm-Rf Efficient Networks for Universal Audio Source Separation [3]**\
 This paper highlights an approach to reduce the resource usage of a source separation model. The network provided specifically attempts to reduce memory requirements. This paper does not provide a tangible implementation on an edge device, so I can use strategies discussed in this paper to create a model that fits onto the Arduino board.
@@ -53,7 +53,7 @@ I plan to use Freesound [4] and BBC Sound Effects [5]. Freesound and BBC Sound E
 
 ### 9.c. Software
 
-I will use the Arduino IDE [6] to write code for the Arduino board. I will use Jupyter Notebook [7] and/or Google Colab [8]to create and debug my TensorFlow model. I also plan to use the TensorFlow Lite converter (Python API) [9] to convert my TensorFlow model into TensorFlow Lite. Lastly, software such as Edge Impulse [10] can be used to assist in any of these steps.
+I will use the Arduino IDE [6] to write code for the Arduino board. I will use Jupyter Notebook [7] and/or Google Colab [8] to create and debug my TensorFlow model. I also plan to use the TensorFlow Lite converter (Python API) [9] to convert my TensorFlow model into TensorFlow Lite. Lastly, software such as Edge Impulse [10] can be used to assist in any of these steps.
 
 ## 10. References
 
