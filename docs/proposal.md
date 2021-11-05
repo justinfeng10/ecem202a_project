@@ -2,7 +2,7 @@
 
 ## 1. Motivation & Objective
 
-In this project, the goal is to separate two target audio signals that may or may not be occurring at the same time. In audio classification, we cannot guarantee that target sounds will be isolated, as other target sounds may be present at the same time. It is also costly to support two concurrent machine learning models at the same time to classify each signal separately. Additionally, existing work on source separation on embedded systems is limited. Thus, the motivation of this project is to separate two concurrent target sounds via one machine learning model, on an Arduino board.
+In this project, the goal is to separate two target audio signals using one machine learning model. In audio classification, we cannot guarantee that target sounds will be isolated, as other target sounds may be present at the same time. The aim is to separate this "mixture" of target sounds into their component target sounds, recognizing when each are present (or not present). Additionally, existing work on source separation on embedded systems is limited. Thus, the motivation of this project is to separate two target sounds via one machine learning model, on an Arduino board.
 
 ## 2. State of the Art & Its Limitations
 
@@ -12,27 +12,27 @@ One limitation is the lack of support for edge devices. A large portion of exist
 
 ## 3. Novelty & Rationale
 
-The novelty in my approach is to consider the Arduino's constraints from the beginning in the creation of an audio source separation model and to provide tangible deployment and test results. I believe my approach will be successful because previous work can be leveraged in addition to an understanding of the Arduino's capabilities to fine tune a model as well as audio processing steps to fit the needs of the Arduino.
+The novelty in my approach is to consider the Arduino's constraints from the beginning in the creation of an audio source separation model and to provide tangible deployment and test results. I believe my approach will be successful because previous work can be leveraged in addition to an understanding of the Arduino's capabilities to fine tune a model as well as implement audio processing steps that fit under the Arduino's constraints.
 
 ## 4. Potential Impact
 
-A successful result will enable edge devices to classify audio samples more robustly. A difficulty in audio recognition is the ability to parse multiple target sounds at the same time. Successful work in this project can be expanded to separate more target sounds or even more complicated problems such as speech separation on edge devices.
+A successful result will enable edge devices to classify audio samples more robustly. A difficulty in audio recognition is the ability to parse multiple target sounds at the same time. Successful work in this project can be expanded to separate more target sounds or handle even more complicated problems such as speech separation on edge devices.
 
 ## 5. Challenges
 
-A main challenge is handling the resource constrained nature of the Arduino board. The Arduino board has limited memory, constraining both our machine learning model and our input data. The processing rate is limited and issues involving delay will need to be considered. Additionally, the Arduino board's microphone can only sample at 16kHz. Thus, source separation may work in TensorFlow on a laptop, but there may be implementation challenges when deploying onto the Arduino. Finally, source separation itself is a difficult problem, so obtaining results in TensorFlow could be a bottleneck, both in the creation of a dataset and the implementation of a model.
+A main challenge is handling the resource constrained nature of the Arduino board. The Arduino board has limited memory, constraining both our machine learning model and our input data. The processing rate is limited and issues involving delay will need to be considered. Additionally, the Arduino board's microphone can only sample at 16kHz. All these constraints may lead to difficulties deploying the TensorFlow model onto the Arduino. Moreover, source separation itself is a difficult problem, so obtaining results in TensorFlow could be a bottleneck. Both a quality dataset and a fine tuned machine learning model are needed. Determining the efficacy of the model is difficult as well. Tactics discussed in the "Metrics of Success" paragraph will need to be used.
 
 ## 6. Requirements for Success
 
-A thorough understanding of machine learning models and audio data preprocessing is necessary for this project. Audio signals need to be processed in a manner that the machine learning model can understand. The machine learning model then needs to properly separate the signals. Additionally, a thorough understanding of the Arduino board itself (memory requirements, processing ability, microphone, TinyML, etc.) will allow for a successful deployment of the model.
+A thorough understanding of machine learning models and audio data preprocessing is necessary for this project. Audio signals need to be processed in a manner that the machine learning model can understand, and quality audio signals are needed to begin with. The machine learning model then needs to properly learn this separation problem and fine tune accordingly. Additionally, a thorough understanding of the Arduino board itself (memory requirements, processing ability, microphone, TinyML, etc.) will allow for a successful deployment of the model.
 
 ## 7. Metrics of Success
 
-A metric of success is to compare the accuracy of the model on TensorFlow and the Arduino. We should expect accuracy loss when deploying the model onto the Arduino, but we should be able to obtain results that are comparable. Additionally, we can analyze the spectrograms of the output of both the Arduino and TensorFlow for a given input to see if we get comparable results. Finally, we can use metrics such as the source-to-distortion ratio to analyze the quality of the sources themselves.
+Since accuracy is not a metric of success in source separation, additional metrics will be needed. Objective metrics such as the source-to-distortion ratio can be used to analyze the quality of the sources themselves. Subjective metrics such as analyzing the resulting spectrograms or playing back the separate signals could be used as well. On the Arduino itself, tests could be run to see if the Arduino can correctly predict the present target sounds under various circumstances (one target present, both targets present, transitions between the two targets, etc.).
 
 ## 8. Execution Plan
 
-The first step is to successfully process audio data. Processing includes creating uniformity in the number of channels, sampling rate, and time length of various audio files and to create spectrograms for the machine learning model. The next step is to create a machine learning model in TensorFlow that can successfuly separate two signals. Once we have a successful model, the following step is to process audio data on the Arduino via the board's microphone (using similar processing steps as discussed before) and pass it through the TensorFlow model to see if we obtain comparable accuracy. Once we verify that, the TensorFlow model can then be deployed on the Arduino board via TensorFlow Lite in order to run live tests on the Arduino itself.
+The first step is to successfully process audio data for the machine learning model. Processing includes creating uniformity in the number of channels, sampling rate, and time length of various audio files and to create spectrograms. The next step is to create a machine learning model in TensorFlow that can successfuly separate two signals. Once a successful model is obtained, the following step is to process audio data on the Arduino via the board's microphone (using similar processing steps as discussed before) and pass it through the TensorFlow model to see if the results are comparable. Once this is verified, the TensorFlow model can then be deployed on the Arduino board via TensorFlow Lite in order to run live tests on the Arduino itself.
 
 ## 9. Related Work
 
@@ -53,7 +53,7 @@ I plan to use Freesound [4] and BBC Sound Effects [5]. Freesound and BBC Sound E
 
 ### 9.c. Software
 
-I will use the Arduino IDE [6] to write code for the Arduino board. I will use Jupyter Notebook [7] to create and debug my TensorFlow model. I also plan to use the TensorFlow Lite converter (Python API) [8] to convert my TensorFlow model into TensorFlow Lite. Lastly, software such as Edge Impulse [9] can be used to assist in any of these steps.
+I will use the Arduino IDE [6] to write code for the Arduino board. I will use Jupyter Notebook [7] and/or Google Colab [8]to create and debug my TensorFlow model. I also plan to use the TensorFlow Lite converter (Python API) [9] to convert my TensorFlow model into TensorFlow Lite. Lastly, software such as Edge Impulse [10] can be used to assist in any of these steps.
 
 ## 10. References
 
@@ -71,6 +71,8 @@ I will use the Arduino IDE [6] to write code for the Arduino board. I will use J
 
 [7] Jupyter Notebook. Available: https://jupyter.org/
 
-[8] TensorFlow Lite Converter. Available: https://www.tensorflow.org/lite/convert/
+[8] Google Colab. Available: https://colab.research.google.com/
 
-[9] Edge Impulse. Available: https://www.edgeimpulse.com/
+[9] TensorFlow Lite Converter. Available: https://www.tensorflow.org/lite/convert/
+
+[10] Edge Impulse. Available: https://www.edgeimpulse.com/
