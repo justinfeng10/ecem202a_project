@@ -57,22 +57,22 @@ I will use the Arduino IDE [6] to write code for the Arduino board. I will use J
 
 ## 10. References
 
-[1] P. Chandna, M. Miron, J. Janer, and E. Gomez, "Monoaural Audio Source Separation Using Deep Convolutional Neural Networks," LVA/ICA 2017. Feb. 2017, doi: 10.1007/978-3-319-53547-0_25. Available: https://www.researchgate.net/publication/313732034_Monoaural_Audio_Source_Separation_Using_Deep_Convolutional_Neural_Networks
+[1] P. Chandna, M. Miron, J. Janer, and E. Gomez, "Monoaural Audio Source Separation Using Deep Convolutional Neural Networks," LVA/ICA 2017. Feb. 2017, doi: 10.1007/978-3-319-53547-0_25. Available: <https://www.researchgate.net/publication/313732034_Monoaural_Audio_Source_Separation_Using_Deep_Convolutional_Neural_Networks>
 
-[2] K. M. Jeon, C. Chun, G. Kim, C. Leem, B. Kim and W. Choi, "Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device," 2020 IEEE ICCE, 2020, pp. 1-4, doi: 10.1109/ICCE46568.2020.9043051. Available: https://ieeexplore.ieee.org/document/9043051
+[2] K. M. Jeon, C. Chun, G. Kim, C. Leem, B. Kim and W. Choi, "Lightweight U-Net Based Monaural Speech Source Separation for Edge Computing Device," 2020 IEEE ICCE, 2020, pp. 1-4, doi: 10.1109/ICCE46568.2020.9043051. Available: <https://ieeexplore.ieee.org/document/9043051>
 
-[3] E. Tzinis, Z. Wang, and P. Smaragdis, "Sudo Rm-Rf: Efficient Networks for Universal AUdio Source Separation," 2020 IEEE 30th International Workshop on MLSP, 2020, doi: 10.1109/MLSP49062.2020.9231900. Available: https://arxiv.org/abs/2007.06833
+[3] E. Tzinis, Z. Wang, and P. Smaragdis, "Sudo Rm-Rf: Efficient Networks for Universal AUdio Source Separation," 2020 IEEE 30th International Workshop on MLSP, 2020, doi: 10.1109/MLSP49062.2020.9231900. Available: <https://arxiv.org/abs/2007.06833>
 
-[4] Freesound. Available: https://freesound.org/
+[4] Freesound. Available: <https://freesound.org/>
 
-[5] BBC Sound Effects. Avaliable: https://sound-effects.bbcrewind.co.uk/
+[5] BBC Sound Effects. Avaliable: <https://sound-effects.bbcrewind.co.uk/>
 
-[6] Arduino IDE. Available: https://www.arduino.cc/en/software
+[6] Arduino IDE. Available: <https://www.arduino.cc/en/software>
 
-[7] Jupyter Notebook. Available: https://jupyter.org/
+[7] Jupyter Notebook. Available: <https://jupyter.org/>
 
-[8] Google Colab. Available: https://colab.research.google.com/
+[8] Google Colab. Available: <https://colab.research.google.com/>
 
-[9] TensorFlow Lite Converter. Available: https://www.tensorflow.org/lite/convert/
+[9] TensorFlow Lite Converter. Available: <https://www.tensorflow.org/lite/convert/>
 
-[10] Edge Impulse. Available: https://www.edgeimpulse.com/
+[10] Edge Impulse. Available: <https://www.edgeimpulse.com/>
