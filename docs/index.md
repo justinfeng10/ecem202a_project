@@ -7,6 +7,7 @@ The approach taken in this project is to first create a successful source separa
 # Team
 
 * Justin Feng
+* Yang Liu
 
 # Required Submissions
 
