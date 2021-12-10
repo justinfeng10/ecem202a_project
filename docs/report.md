@@ -78,7 +78,7 @@ The second case study involves quantization, similar to paper [4]. 8-bit fixed p
 
 ## Evaluation Strategies
 
-After separation, the ISTFT can be calculated to convert the output spectrograms to audio. The phase of the input sound is used as an estimation of the phase of the outputs. The equation in Figure 5 can be used to convert the magnitude spectrogram output of the estimated source to a form that the ISTFT can use, using the magnitude spectrogram output of the specific source and the input mixture phase to recoup the real and imaginary components. Once this is completed, one can calculate the ISTFT.
+After separation, the ISTFT can be calculated to convert the output spectrograms to audio to apply qualitative analysis on the raw sound. The phase of the input sound is used as an estimation of the phase of the outputs. The equation in Figure 5 can be used to convert the magnitude spectrogram output of the estimated source to a form that the ISTFT can use, using the magnitude spectrogram output of the specific source and the input mixture phase to recoup the real and imaginary components. Once this is completed, one can calculate the ISTFT.
 
 ![Figure 5](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure5.JPG)
 
