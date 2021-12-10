@@ -56,7 +56,7 @@ In the end, our dataset had a maximum of 2400 one second clips, and these result
 
 Before the dataset can be passed to the ML model, the STFT needs to be computed. The STFT computes the fourier transform over successive windows, with a given hopsize. There is a tradeoff between time and frequency resolution that needs to be considered. As the fourier transform size increases, higher frequency resolution is obtained (greater number of frequency bins) at the expense of time resolution. As the fourier transform size decreases, higher time resolution is obtained at the expense of frequency resolution (lower number of frequency bins). In the STFT, window size is usually a power of two to increase computation speed. The hop size determines where in time is the next STFT taken. Experimentally, parameters of window size = 512 (3.2% of a clip) and hop size = 128 (0.8% of a clip) were chosen. By experimenting with different parameters, one can achieve an optimal tradeoff between time and frequency resolution. In Figure 1, from left to right, are spectrograms for a vacuum cleaner, alarm, water, and a dog. The STFT is able to capture unique characteristics for each sound.
 
-![Figure 1](docs/media/Figure1.JPG)
+![Figure 1](/docs/media/Figure1.JPG)
 
 ## ML Model
 
