@@ -72,6 +72,10 @@ At this point, the loss needs to be calculated. Loss is defined as the mean squa
 
 ![Figure 4](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure4.JPG)
 
+Two case studies were further investigated. The first case study involves complex numbers. Similar to paper [3], the phase information is trained on as well as the magnitude. Instead of having only the magnitude as input and utilizing the input phase as an estimate of the output phase, both the magnitude and phase are passed into the model to be trained on. Approaches such as those discussed in STFNets [9] that adjust the convolution (such as padding) based on the properties of a spectrogram with real and imaginary components were unattainable in this project as the model implemented cannot take in imaginary numbers as input. Thus, our implemented approach using magnitude and phase is an attempt to bridge the gap between the approach discussed in [1] and the approach discussed in [9]. 
+
+The second case study involves quantization, similar to paper [4]. 8-bit fixed point quantization was utilized at intermediate feature map results (word length of eight, fraction length of four) in order to analyze how a reduction in value resolution affects the output.
+
 ## Evaluation Strategies
 
 After separation, the ISTFT can be calculated to convert the output spectrograms to audio. The phase of the input sound is used as an estimation of the phase of the outputs. The equation in Figure 5 can be used to convert the magnitude spectrogram output of the estimated source to a form that the ISTFT can use, using the magnitude spectrogram output of the specific source and the input mixture phase to recoup the real and imaginary components. Once this is completed, one can calculate the ISTFT.
@@ -79,10 +83,6 @@ After separation, the ISTFT can be calculated to convert the output spectrograms
 ![Figure 5](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure5.JPG)
 
 Metrics such as SDR, SIR, and SAR are then calculated on the test set mixtures using the Museval library [8] in order to do quantitative analysis. The Museval library has a function to compute blind source separation metrics. 
-
-Two case studies were further investigated. The first case study involves complex numbers. Similar to paper [3], the phase information is trained on as well as the magnitude. Instead of having only the magnitude as input and utilizing the input phase as an estimate of the output phase, both the magnitude and phase are passed into the model to be trained on. Approaches such as those discussed in STFNets [9] that adjust the convolution (such as padding) based on the properties of a spectrogram with real and imaginary components were unattainable in this project as the model implemented cannot take in imaginary numbers as input. Thus, our implemented approach using magnitude and phase is an attempt to bridge the gap between the approach discussed in [1] and the approach discussed in [9]. 
-
-The second case study involves quantization, similar to paper [4]. 8-bit fixed point quantization was utilized at intermediate feature map results (word length of eight, fraction length of four) in order to analyze how a reduction in value resolution affects the output.
 
 ## Arduino
 
