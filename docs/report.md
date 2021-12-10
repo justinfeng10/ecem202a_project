@@ -62,11 +62,19 @@ Before the dataset can be passed to the ML model, the STFT needs to be computed.
 
 The model designed in this project (Figure 2) is based on the approach discussed in paper [1]. Each piece of data consists of the magnitude of the input sound spectrogram, the spectrograms of the isolated sources, similar to [4] (used for the loss calculation), and the phase of the input sound (used to calculate the ISTFT). The model itself consists of an encoding stage and a decoding stage. First, the encoding stage computes vertical and horizontal convolutions across the input, creating a latent representation of the source. The vertical and horizontal convolutions learn different timbre information and temporal changes, respectively. Before the latent representation is sent to the decoding stage, it is sent to a dense layer. This bottleneck reduces the dimensionality of the input. Then, the latent representation is sent to the decoding stage, where the separated representations are formed. Transpose convolutions are then applied to the latent representation to prepare the output for the time frequency masks. Parameters for our model were experimentally determined through thorough testing.
 
-Time frequency masks are then applied to construct the separated sources. The equation, shown in Figure 3,  consists of an output source divided by the sum of the other output sources. Once masks are calculated, the mask can then be multiplied by the model input spectrogram to receive the predicted spectrogram. 
+![Figure 2](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure2.JPG)
+
+Time frequency masks are then applied to construct the separated sources. The equation, shown in Figure 3,  consists of an output source divided by the sum of the other output sources. Once masks are calculated, the mask can then be multiplied by the model input spectrogram to receive the predicted spectrogram.
+
+![Figure 3](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure3.JPG)
 
 At this point, the loss needs to be calculated. Loss is defined as the mean squared error between the predicted output source and the provided label source. These loss terms are reduced via sum and added together. Additionally, an extra loss term can be added that subtracts out the mean squared error between predicted sources, multiplied by a constant “alpha”. The loss function is shown in Figure 4. 
 
+![Figure 4](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure4.JPG)
+
 After separation, the ISTFT can be calculated to convert the output spectrograms to audio. The phase of the input sound is used as an estimation of the phase of the outputs. The equation in Figure 5 can be used to convert the magnitude spectrogram output of the estimated source to a form that the ISTFT can use, using the magnitude spectrogram output of the specific source and the input mixture phase to recoup the real and imaginary components. Once this is completed, one can calculate the ISTFT.
+
+![Figure 5](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure5.JPG)
 
 Two case studies were further investigated. The first case study involves complex numbers. Similar to paper [3], the phase information is trained on as well as the magnitude. Instead of having only the magnitude as input and utilizing the input phase as an estimate of the output phase, both the magnitude and phase are passed into the model to be trained on. Approaches such as those discussed in STFNets [8] that adjust the convolution (such as padding) based on the properties of a spectrogram with real and imaginary components were unattainable in this project as the model implemented cannot take in imaginary numbers as input. Thus, our implemented approach using magnitude and phase is an attempt to bridge the gap between the approach discussed in [1] and the approach discussed in [8]. 
 
@@ -75,6 +83,8 @@ The second case study involves quantization, similar to paper [4]. 8-bit fixed p
 ## Arduino
 
 Using the on-board microphone of Arduino Nano 33 BLE Sense, it is possible to sample audio signals without an external microphone module. Figure 6 illustrates the process from collecting data to sending them to the ML model. 
+
+![Figure 6](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure6.JPG)
 
 By default, the PDM module in Arduino IDE only collects 512 bytes at a time, allowing one to have 256 two byte samples in the sample buffer. Therefore, it is necessary to increase the PDM buffer size to 32000 bytes (16000 samples times 2 bytes) in order to store one second worth of audio. Before the data is stored in the buffer, the data is converted to PCM format, a format that the ML model can understand. While waiting for the commands, the Arduino keeps rolling in new data until user input is received. Once user input is received, the arduino will send the samples to the computer through the “Serial” module. After that, it is ready to be imported into an array and written into a wav file. Now the model is able to analyze the imported file and can start the separation process. 
 
@@ -90,6 +100,9 @@ In Figure 8, the resulting SDR, SIR, and SAR are shown, in decibels. The higher 
 
 One can also do a qualitative analysis of the sounds. Test cases can be run using the “SourceSeparationTestBase.py” file.
 
+![Figure 7](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure7.JPG)
+![Figure 8](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure8.JPG)
+
 ## Model 2: Vacuum, Alarm, Water, Dog
 
 In Figure 9, a mixture of a vacuum cleaner and an alarm (picture 1) is shown again to compare to Model 1. The model is able to detect that the mixture consists of a vacuum cleaner and an alarm, while not having any water or dog sounds. Within picture 2 and picture 3, definite separation can be seen, using a similar analysis as for Model 1. Figure 10 shows a mixture of a vacuum cleaner and a dog being separated.
@@ -98,11 +111,19 @@ In Figure 11, the resulting metrics are shown. Vacuum cleaner sounds still perfo
 
 One can also do a qualitative analysis of the sounds. Test cases can be run using the “SourceSeparationTest.py” file.
 
+![Figure 9](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure9.JPG)
+![Figure 10](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure10.JPG)
+![Figure 11](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure11.JPG)
+
 ## Model 3: Complex
 
 Compared to Models 1 and 2, the model has a bit more trouble separating the sources. Particularly, in Figure 13, we notice that the model is having some trouble between alarm (picture 3) and water (picture 4). In Figure 14, the metrics are also slightly down in all categories. This shows that estimating the phase is complex.
 
 One can also do a qualitative analysis of the sounds. Test cases can be run using the “SourceSeparationTestComplex.py” file.
+
+![Figure 12](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure12.JPG)
+![Figure 13](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure13.JPG)
+![Figure 14](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure14.JPG)
 
 ## Model 4: Quantized
 
@@ -110,9 +131,14 @@ By quantizing the intermediate feature maps to 8-bit fixed point, the metrics ch
 
 Note that the model could not be saved unlike the other models, but in the “QuantizedExamples” Folder are sample inputs and outputs of the quantized model.
 
+![Figure 15](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure15.JPG)
+![Figure 16](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure16.JPG)
+
 ## Arduino
 
 To evaluate if the recorded audio is valid, a wav file called “temp.wav” will be generated once the sampling process is finished. This wav file should be 1 second long in order to successfully be separated by the model. After a few rounds of testing, the results met the expectations. The program was able to generate spectrograms using the file and run the ML model. Figure 17 shows the spectrogram output of a live test of a Vacuum and Alarm mixture.
+
+![Figure 17](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure17.JPG)
 
 # 5. Discussion and Conclusions
 
