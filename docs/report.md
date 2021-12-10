@@ -82,23 +82,23 @@ Four models were simulated. Model 1 separates two sources, with two classes: vac
 
 ## Model 1: Vacuum and Alarm
 
-In Figure 6, a mixture consisting of a vacuum cleaner and an alarm sound is shown (picture 1). We see the predicted vacuum output (picture 2) and the predicted alarm output (picture 3). Note that in picture 2, we see the general shading in the spectrogram and the notable horizontal line across time that signifies a vacuum cleaner. Note that in picture 3, we see the frequency harmonics and shorter bursts of alarm sound.
+In Figure 7, a mixture consisting of a vacuum cleaner and an alarm sound is shown (picture 1). We see the predicted vacuum output (picture 2) and the predicted alarm output (picture 3). Note that in picture 2, we see the general shading in the spectrogram and the notable horizontal line across time that signifies a vacuum cleaner. Note that in picture 3, we see the frequency harmonics and shorter bursts of alarm sound.
 
-In Figure 7, the resulting SDR, SIR, and SAR are shown, in decibels. The higher the value, the better. The vacuum cleaner is being separated slightly better than the alarm. Both are being separated relatively well.
+In Figure 8, the resulting SDR, SIR, and SAR are shown, in decibels. The higher the value, the better. The vacuum cleaner is being separated slightly better than the alarm. Both are being separated relatively well.
 
 One can also do a qualitative analysis of the sounds. Test cases can be run using the “SourceSeparationTestBase.py” file.
 
 ## Model 2: Vacuum, Alarm, Water, Dog
 
-In Figure 8, a mixture of a vacuum cleaner and an alarm (picture 1) is shown again to compare to Model 1. The model is able to detect that the mixture consists of a vacuum cleaner and an alarm, while not having any water or dog sounds. Within picture 2 and picture 3, definite separation can be seen, using a similar analysis as for Model 1. Figure 9 shows a mixture of a vacuum cleaner and a dog being separated.
+In Figure 9, a mixture of a vacuum cleaner and an alarm (picture 1) is shown again to compare to Model 1. The model is able to detect that the mixture consists of a vacuum cleaner and an alarm, while not having any water or dog sounds. Within picture 2 and picture 3, definite separation can be seen, using a similar analysis as for Model 1. Figure 10 shows a mixture of a vacuum cleaner and a dog being separated.
 
-In Figure 10, the resulting metrics are shown. Vacuum cleaner sounds still perform the best comparatively. Alarm experiences a slight drop in values. Dog performs relatively close to vacuum cleaner, while water performs closer to alarm. One can surmise that since vacuum cleaners and water share a more similar time-frequency profile than the other sounds, the model is able to distinguish one better than the other. 
+In Figure 11, the resulting metrics are shown. Vacuum cleaner sounds still perform the best comparatively. Alarm experiences a slight drop in values. Dog performs relatively close to vacuum cleaner, while water performs closer to alarm. One can surmise that since vacuum cleaners and water share a more similar time-frequency profile than the other sounds, the model is able to distinguish one better than the other. 
 
 One can also do a qualitative analysis of the sounds. Test cases can be run using the “SourceSeparationTest.py” file.
 
 ## Model 3: Complex
 
-Compared to Models 1 and 2, the model has a bit more trouble separating the sources. Particularly, in Figure 12, we notice that the model is having some trouble between alarm (picture 3) and water (picture 4). In Figure 13, the metrics are also slightly down in all categories. This shows that estimating the phase is complex.
+Compared to Models 1 and 2, the model has a bit more trouble separating the sources. Particularly, in Figure 13, we notice that the model is having some trouble between alarm (picture 3) and water (picture 4). In Figure 14, the metrics are also slightly down in all categories. This shows that estimating the phase is complex.
 
 One can also do a qualitative analysis of the sounds. Test cases can be run using the “SourceSeparationTestComplex.py” file.
 
@@ -110,7 +110,7 @@ Note that the model could not be saved unlike the other models, but in the “Qu
 
 ## Arduino
 
-To evaluate if the recorded audio is valid, a wav file called “temp.wav” will be generated once the sampling process is finished. This wav file should be 1 second long in order to successfully be separated by the model. After a few rounds of testing, the results met the expectations. The program was able to generate spectrograms using the file and run the ML model. Figure 16 shows the spectrogram output of a live test of a Vacuum and Alarm mixture.
+To evaluate if the recorded audio is valid, a wav file called “temp.wav” will be generated once the sampling process is finished. This wav file should be 1 second long in order to successfully be separated by the model. After a few rounds of testing, the results met the expectations. The program was able to generate spectrograms using the file and run the ML model. Figure 17 shows the spectrogram output of a live test of a Vacuum and Alarm mixture.
 
 # 5. Discussion and Conclusions
 
