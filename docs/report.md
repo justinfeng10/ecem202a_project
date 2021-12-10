@@ -72,11 +72,15 @@ At this point, the loss needs to be calculated. Loss is defined as the mean squa
 
 ![Figure 4](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure4.JPG)
 
+## Evaluation Strategies
+
 After separation, the ISTFT can be calculated to convert the output spectrograms to audio. The phase of the input sound is used as an estimation of the phase of the outputs. The equation in Figure 5 can be used to convert the magnitude spectrogram output of the estimated source to a form that the ISTFT can use, using the magnitude spectrogram output of the specific source and the input mixture phase to recoup the real and imaginary components. Once this is completed, one can calculate the ISTFT.
 
 ![Figure 5](https://raw.githubusercontent.com/justinfeng10/ecem202a_project/main/docs/media/Figure5.JPG)
 
-Two case studies were further investigated. The first case study involves complex numbers. Similar to paper [3], the phase information is trained on as well as the magnitude. Instead of having only the magnitude as input and utilizing the input phase as an estimate of the output phase, both the magnitude and phase are passed into the model to be trained on. Approaches such as those discussed in STFNets [8] that adjust the convolution (such as padding) based on the properties of a spectrogram with real and imaginary components were unattainable in this project as the model implemented cannot take in imaginary numbers as input. Thus, our implemented approach using magnitude and phase is an attempt to bridge the gap between the approach discussed in [1] and the approach discussed in [8]. 
+Metrics such as SDR, SIR, and SAR are then calculated on the test set mixtures using the Museval library [8] in order to do quantitative analysis. The Museval library has a function to compute blind source separation metrics. 
+
+Two case studies were further investigated. The first case study involves complex numbers. Similar to paper [3], the phase information is trained on as well as the magnitude. Instead of having only the magnitude as input and utilizing the input phase as an estimate of the output phase, both the magnitude and phase are passed into the model to be trained on. Approaches such as those discussed in STFNets [9] that adjust the convolution (such as padding) based on the properties of a spectrogram with real and imaginary components were unattainable in this project as the model implemented cannot take in imaginary numbers as input. Thus, our implemented approach using magnitude and phase is an attempt to bridge the gap between the approach discussed in [1] and the approach discussed in [9]. 
 
 The second case study involves quantization, similar to paper [4]. 8-bit fixed point quantization was utilized at intermediate feature map results (word length of eight, fraction length of four) in order to analyze how a reduction in value resolution affects the output.
 
@@ -142,7 +146,7 @@ To evaluate if the recorded audio is valid, a wav file called “temp.wav” wil
 
 # 5. Discussion and Conclusions
 
-Source separation is a unique challenge. How can a machine learning model learn what makes a sound unique? How can it distinguish between sounds that are similar to each other? In this project, we successfully achieved two source separation. Given an input mixture, the model outputs the predicted separated sounds. Many limitations and challenges were faced. First of all, source separation is a difficult problem and a lot of time was spent to get the base model up and running. This did not leave much time for further optimizations and improvements. A limitation of the model itself includes an increased difficulty in separating mixtures that contain similar aspects of different classes. For instance, aspects of a vacuum cleaner may share similar spectrogram characteristics of that of water. This is a fundamental limit of this spectrogram approach. Future work could utilize techniques found in [8] such as spectral padding to adjust the convolution as well as hologram interleaving in order to optimize the time-frequency trade off. Other work could consist of working on time domain data entirely.
+Source separation is a unique challenge. How can a machine learning model learn what makes a sound unique? How can it distinguish between sounds that are similar to each other? In this project, we successfully achieved two source separation. Given an input mixture, the model outputs the predicted separated sounds. Many limitations and challenges were faced. First of all, source separation is a difficult problem and a lot of time was spent to get the base model up and running. This did not leave much time for further optimizations and improvements. A limitation of the model itself includes an increased difficulty in separating mixtures that contain similar aspects of different classes. For instance, aspects of a vacuum cleaner may share similar spectrogram characteristics of that of water. This is a fundamental limit of this spectrogram approach. Future work could utilize techniques found in [9] such as spectral padding to adjust the convolution as well as hologram interleaving in order to optimize the time-frequency trade off. Other work could consist of working on time domain data entirely.
 
 # 6. References
 
@@ -167,17 +171,21 @@ Source separation is a unique challenge. How can a machine learning model learn 
     
 [7] jiaaro. Pydub. Available: <https://pydub.com/>\
 
-[8] S. Yao et al. STFNets: Learning Sensing Signals from the Time-Frequency Perspective with Short-Time Fourier Neural Networks. W3C2, 2019. arXiv:1902.07849. 
+[8] museval. Available: <https://sigsep.github.io/sigsep-mus-eval/>\
+
+[9] S. Yao et al. STFNets: Learning Sensing Signals from the Time-Frequency Perspective with Short-Time Fourier Neural Networks. W3C2, 2019. arXiv:1902.07849. 
     Available: <https://arxiv.org/abs/1902.07849>\
+
+[10] Simple audio recognition: Recognizing keywords. TensorFlow. Available: <https://tensorflow.org/tutorials/audio/simple_audio>\
     
-[9] Arduino IDE. Available: <https://www.arduino.cc/en/software>\
+[11] Arduino IDE. Available: <https://www.arduino.cc/en/software>\
 
-[10] Jupyter Notebook. Available: <https://jupyter.org/>\
+[12] Jupyter Notebook. Available: <https://jupyter.org/>\
 
-[11] Google Colab. Available: <https://colab.research.google.com/>\
+[13] Google Colab. Available: <https://colab.research.google.com/>\
 
 # 7. Contributions
 
-Justin Feng: Source separation ML models, dataset creation and preprocessing, website
+Justin Feng: Source separation ML models, dataset creation and preprocessing, website\
 Yang Liu: Arduino, microphone, and live testing
 
