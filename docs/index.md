@@ -11,5 +11,5 @@ When walking down a street, one may hear different musical instruments being pla
 
 * [Proposal](proposal.md)
 * [Midterm Checkpoint Presentation Slides](http://)
-* [Final Presentation Slides](https://docs.google.com/presentation/d/1Yf8Y32Tk36Zz1VE6MUDrayRQ5ihTwDeXtkDPviiufFo/edit#slide=id.g1060f3e2d7a_0_5)
+* [Final Presentation Slides](https://docs.google.com/presentation/d/1Yf8Y32Tk36Zz1VE6MUDrayRQ5ihTwDeXtkDPviiufFo/edit?usp=sharing)
 * [Final Report](report)
