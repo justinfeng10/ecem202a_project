@@ -16,14 +16,12 @@ def decode_audio(audio_binary):
     audio, sr = tf.audio.decode_wav(audio_binary, desired_channels=1)
     return tf.squeeze(audio, axis=-1), sr
 
-# Calculate spectrogram and return the magnitude and phase
-# Calculate spectrogram
+# Calculate spectrogram and return the spectrogram
 def get_spectrogram(waveform):
     spectrogram = tf.signal.stft(waveform, frame_length=512, frame_step=128)
     return spectrogram
  
 # Plot spectrogram, given a spectrogram and an axis 
-# Plot spectrogram, given a spectrogram and an axis
 def plot_spectrogram(spectrogram, ax):
     # Convert to frequencies to log scale and transpose so that the time is
     # represented in the x-axis (columns). An epsilon is added to avoid log of zero.
