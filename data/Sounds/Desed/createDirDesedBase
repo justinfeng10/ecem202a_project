@@ -1,0 +1,11 @@
+#!/bin/bash
+mkdir MixturesBase
+x=01
+mkdir ../dataset/audio/eval/public/MixturesBase/"$x".wavLabel
+for i in {11..2894}
+do
+	if [ $(( $i % 10 )) == 1 ];
+	then
+		mkdir ../dataset/audio/eval/public/MixturesBase/"$i".wavLabel
+	fi
+done

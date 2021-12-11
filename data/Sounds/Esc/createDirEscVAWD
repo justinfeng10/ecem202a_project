@@ -1,0 +1,11 @@
+#!/bin/bash
+mkdir MixturesVAWD
+x=01
+mkdir MixturesVAWD/"$x".wavLabel
+for i in {11..7994}
+do
+	if [ $(( $i % 10 )) == 1 ];
+	then
+		mkdir MixturesVAWD/"$i".wavLabel
+	fi
+done

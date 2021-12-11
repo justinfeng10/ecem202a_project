@@ -1,0 +1,15 @@
+#!/bin/bash
+mkdir MixturesBase
+x=011
+mkdir MixturesBase/"$x".wavLabel
+x=021
+mkdir MixturesBase/"$x".wavLabel
+x=031
+mkdir MixturesBase/"$x".wavLabel
+for i in {111..19934}
+do
+	if [ $(( ( $i / 10 ) % 10 )) == 1 ] || [ $(( ( $i / 10 ) % 10 )) == 2 ] || [ $(( ( $i / 10 ) % 10 )) == 3 ] && [ $(( $i % 10 )) == 1 ];
+	then
+		mkdir MixturesBase/"$i".wavLabel
+	fi
+done
