@@ -14,5 +14,5 @@ When walking down a street, one may hear different musical instruments being pla
 * [Final Presentation Slides](https://docs.google.com/presentation/d/1Yf8Y32Tk36Zz1VE6MUDrayRQ5ihTwDeXtkDPviiufFo/edit?usp=sharing)
 * [Final Report](report.md)
 * [Final Report Video](https://youtu.be/9TLBRLbjA2U)
-* [Demo 1]()
-* [Demo 2]()
+* [Demo 1](https://youtu.be/1CPYJBp5lpl)
+* [Demo 2](https://youtu.be/DU1GsaJTA9M)
