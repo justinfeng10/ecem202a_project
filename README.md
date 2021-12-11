@@ -16,7 +16,10 @@ python3 SourceSeparationTest.py SamplesVAWD/VacuumAlarm.wav
 This script grabs the input sound file from the folder "SamplesVAWD", runs inference, and prints the input spectrogram and the predicted output spectrograms. Additionally, the corresponding wav files will be placed in the respective model folder under the created folder "SourceSeparationTestOutput". One can run examples for the other models (base and VAWDComplex) by using the different python codes as shown below in the examples. One can also run their own input mixtures by placing  a one second wav file within the respective subfolder for the model one desires to test.
 
 Examples:
+
 Model 1: python3 SourceSeparationTestBase.py SamplesBase/VacuumAlarm1.wav
+
+Model 2: python3 SourceSeparationTest.py SamplesVAWD/VacuumAlarm.wav
 
 Model 3: python3 SourceSeparationTestComplex.py SamplesVAWDComplex/VacuumAlarm.wav
 
