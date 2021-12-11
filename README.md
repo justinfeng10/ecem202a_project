@@ -17,6 +17,7 @@ This script grabs the input sound file from the folder "SamplesVAWD", runs infer
 
 Examples:
 Model 1: python3 SourceSeparationTestBase.py SamplesBase/VacuumAlarm1.wav
+
 Model 3: python3 SourceSeparationTestComplex.py SamplesVAWDComplex/VacuumAlarm.wav
 
 ## Abstract:
