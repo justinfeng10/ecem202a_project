@@ -6,6 +6,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import models
 from IPython import display
 import sys
+import tensorflow_io as tfio
 
 # Grab file name from command line
 filename = sys.argv[1]
@@ -38,6 +39,8 @@ new_model = tf.keras.models.load_model('saved_model/my_model_VAWDComplex', compi
 # Read input file from folder
 audio_binary = tf.io.read_file(filename)
 waveform, sr = decode_audio(audio_binary)
+if (sr == 44100):
+    waveform = tfio.audio.resample(waveform, 44100, 16000, name=None)
 spectrogram = get_spectrogram(waveform)
 
 # Pass audio into ML model and obtain predicted outputs

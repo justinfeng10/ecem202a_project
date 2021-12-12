@@ -6,6 +6,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import models
 from IPython import display
 import sys
+import tensorflow_io as tfio
 
 # Grab file name from command line
 filename = sys.argv[1]
@@ -40,6 +41,8 @@ new_model = tf.keras.models.load_model('saved_model/my_model_base', compile=Fals
 # Read input file from folder
 audio_binary = tf.io.read_file(filename)
 waveform, sr = decode_audio(audio_binary)
+if (sr == 44100):
+    waveform = tfio.audio.resample(waveform, 44100, 16000, name=None)
 spec, phase = get_spectrogram(waveform)
 spec = tf.expand_dims(spec, -1)
 phase = tf.expand_dims(phase, -1)
