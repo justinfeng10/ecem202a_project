@@ -14,7 +14,7 @@ To run test samples on the trained ML models (this example is for the VAWD model
 
 python3 SourceSeparationTest.py SamplesVAWD/VacuumAlarm.wav
 
-This script grabs the input sound file from the folder "SamplesVAWD", runs inference, and prints the input spectrogram and the predicted output spectrograms. Additionally, the corresponding wav files will be placed in the respective model folder under the created folder "SourceSeparationTestOutput". One can run examples for the other models (base and VAWDComplex) by using the different python codes as shown below in the examples. One can also run their own input mixtures by placing  a one second wav file within the respective subfolder for the model one desires to test.
+This script grabs the input sound file from the folder "SamplesVAWD", runs inference, and prints the input spectrogram and the predicted output spectrograms. Additionally, the corresponding wav files will be placed in the respective model folder under the created folder "SourceSeparationTestOutput". One can run examples for the other models (base and VAWDComplex) by using the different python codes as shown below in the examples. One can also run their own input mixtures by placing a one second wav file (with sampling rate of either 16 kHz or 44.1 kHz) within the respective subfolder for the model one desires to test.
 
 Examples:
 
