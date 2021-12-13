@@ -24,6 +24,12 @@ Model 2: python3 SourceSeparationTest.py SamplesVAWD/VacuumAlarm.wav
 
 Model 3: python3 SourceSeparationTestComplex.py SamplesVAWDComplex/VacuumAlarm.wav
 
+## Team
+
+Justin Feng
+
+Yang Liu
+
 ## Required Submissions
 
 * [Proposal](/docs/proposal.md)
